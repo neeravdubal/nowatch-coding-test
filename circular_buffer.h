@@ -6,7 +6,7 @@ ifndef CIRCULAR_BUFFER_H
 
 /* Define the CircularBuffer structure to store integers. */
 typedef struct {
-    int *buffer;      /* Pointer to the allocated array */
+    int32_t *buffer;      /* Pointer to the allocated array */
     size_t head;      /* Index where the next element will be inserted */
     size_t tail;      /* Index of the oldest element for removal */
     size_t capacity;  /* Maximum number of elements in the buffer */
@@ -33,7 +33,7 @@ void cb_add(CircularBuffer *cb, int data);
 /* Removes the oldest element from the buffer.
  * The removed element is stored into the integer pointed by 'data'.
  * Returns 0 on success; returns -1 if the buffer is empty. */
-int cb_remove(CircularBuffer *cb, int *data);
+int32_t cb_remove(CircularBuffer *cb, int *data);
 
 /* Returns the current number of elements stored in the circular buffer. */
 size_t cb_size(CircularBuffer *cb);
