@@ -93,3 +93,28 @@ size_t cb_size(CircularBuffer *cb)
 
     return size;
 }
+
+
+double compute_ema(CircularBuffer *cb, double alpha) 
+{
+    if (cb_is_empty(cb)) 
+    {
+        return 0.0;
+    }
+
+    size_t size = cb_size(cb);
+    size_t index = cb->tail;
+
+    /* Initialize the EMA with the first value. */
+    double ema = (double)cb->buffer[index];
+
+    index = (index + 1) % cb->capacity;
+
+    for (size_t i = 1; i < size; i++) 
+    {
+        ema = alpha * cb->buffer[index] + (1.0 - alpha) * ema;
+        index = (index + 1) % cb->capacity;
+    }
+    
+    return ema;
+}
