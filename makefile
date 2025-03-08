@@ -23,5 +23,10 @@ $(TARGET): $(C_OBJECTS)
 %.o: %.c circular_buffer.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
+test: $(TEST_TARGET)
+
+$(TEST_TARGET): circular_buffer.c test_circular_buffer.cpp circular_buffer.h
+	$(CXX) $(CXXFLAGS) circular_buffer.c test_circular_buffer.cpp -o $(TEST_TARGET) $(GTEST_LIBS)
+
 clean:
-rm -f $(TARGET) $(C_OBJECTS) 
+	rm -f $(TARGET) $(C_OBJECTS) $(TEST_TARGET)
