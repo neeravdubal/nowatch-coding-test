@@ -1,10 +1,12 @@
 #include <gtest/gtest.h>
-extern "C" {
+extern "C" 
+{
 #include "circular_buffer.h"
 }
 
 // Test Initialization: buffer should be created empty.
-TEST(CircularBufferTest, Initialization) {
+TEST(CircularBufferTest, Initialization) 
+{
     size_t capacity = 5;
     CircularBuffer *cb = cb_init(capacity);
     ASSERT_NE(cb, nullptr);
@@ -14,7 +16,8 @@ TEST(CircularBufferTest, Initialization) {
 }
 
 // Test basic add and remove operations.
-TEST(CircularBufferTest, AddRemoveElements) {
+TEST(CircularBufferTest, AddRemoveElements) 
+{
     size_t capacity = 3;
     CircularBuffer *cb = cb_init(capacity);
     ASSERT_NE(cb, nullptr);
@@ -36,7 +39,8 @@ TEST(CircularBufferTest, AddRemoveElements) {
 }
 
 // Test buffer overwriting when full.
-TEST(CircularBufferTest, OverwriteWhenFull) {
+TEST(CircularBufferTest, OverwriteWhenFull) 
+{
     size_t capacity = 3;
     CircularBuffer *cb = cb_init(capacity);
     ASSERT_NE(cb, nullptr);
@@ -67,7 +71,8 @@ TEST(CircularBufferTest, OverwriteWhenFull) {
 //   ema0 = 80
 //   ema1 = 0.5*90 + 0.5*80 = 85
 //   ema2 = 0.5*100 + 0.5*85 = 92.5
-TEST(CircularBufferTest, ComputeEMA) {
+TEST(CircularBufferTest, ComputeEMA) 
+{
     size_t capacity = 5;
     CircularBuffer *cb = cb_init(capacity);
     ASSERT_NE(cb, nullptr);
@@ -83,7 +88,8 @@ TEST(CircularBufferTest, ComputeEMA) {
 }
 
 // Test removal when the buffer is empty.
-TEST(CircularBufferTest, RemoveFromEmptyBuffer) {
+TEST(CircularBufferTest, RemoveFromEmptyBuffer) 
+{
     size_t capacity = 3;
     CircularBuffer *cb = cb_init(capacity);
     ASSERT_NE(cb, nullptr);
@@ -94,7 +100,8 @@ TEST(CircularBufferTest, RemoveFromEmptyBuffer) {
     cb_free(cb);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
